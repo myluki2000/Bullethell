@@ -5,6 +5,7 @@ Imports Microsoft.Xna.Framework.Graphics
 Public Class ScreenMainGame
 
     Public Shared Projectiles As New List(Of Projectile)
+    Public Shared DrawShadows As Boolean = True
 
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch, theGameTime As GameTime)
         theSpriteBatch.Begin(Nothing, BlendState.AlphaBlend, SamplerState.LinearWrap, Nothing, Nothing, Nothing, Nothing)
@@ -63,7 +64,7 @@ Public Class ScreenMainGame
 
         theSpriteBatch.End()
 
-        If theGameTime.TotalGameTime.TotalSeconds < 5 Then
+        If DrawShadows Then
             ' Draw shadows which will be saved to a render target
             graphics.GraphicsDevice.SetRenderTarget(shadowTarget)
             graphics.GraphicsDevice.Clear(Color.Transparent)
@@ -72,6 +73,8 @@ Public Class ScreenMainGame
                 Block.DrawShadow(theSpriteBatch)
             Next
             theSpriteBatch.End()
+
+            DrawShadows = False
         End If
     End Sub
 

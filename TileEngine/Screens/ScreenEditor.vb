@@ -14,7 +14,11 @@ Public Class ScreenEditor
     Shared WithEvents btnBlock3 As New Button With {.rect = New Rectangle(202, 2, 26, 26), .text = "", .ClickEffect = Button.ClickEffects.BlueBorder, .ToggleButton = True,
         .BackgroundTexture = Textures.wood}
 
+    Shared sprBatch As SpriteBatch
+
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch)
+        sprBatch = theSpriteBatch
+
         If Mouse.GetState.LeftButton = ButtonState.Pressed Then
             If btnBlock1.Checked Then
                 EditorBlocks.Add(New Block(New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0)))
@@ -38,8 +42,11 @@ Public Class ScreenEditor
 
         theSpriteBatch.Begin()
         For Each _block In EditorBlocks
-            DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(_block.Position.X) * Block.BlockWidth, CInt(_block.Position.Y) * Block.BlockWidth, Block.BlockWidth, Block.BlockWidth), Color.Red)
-
+            If _block.SpriteTexture Is Nothing Then
+                DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(_block.Position.X) * Block.BlockWidth, CInt(_block.Position.Y) * Block.BlockWidth, Block.BlockWidth, Block.BlockWidth), Color.Gray)
+            Else
+                theSpriteBatch.Draw(_block.SpriteTexture, New Rectangle(CInt(_block.Position.X) * Block.BlockWidth, CInt(_block.Position.Y) * Block.BlockWidth, Block.BlockWidth, Block.BlockWidth), New Rectangle(0, 0, _block.SpriteTexture.Width, CInt(_block.SpriteTexture.Height / 2)), Color.White)
+            End If
         Next
 
 
@@ -66,7 +73,7 @@ Public Class ScreenEditor
         Next
 
 
-
+        ScreenMainGame.DrawShadows = True
         SelectedScreen = Screens.MainGame
     End Sub
 
