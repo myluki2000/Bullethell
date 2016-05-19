@@ -9,7 +9,7 @@ Public Class ScreenMainGame
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch, theGameTime As GameTime)
         theSpriteBatch.Begin(Nothing, BlendState.AlphaBlend, SamplerState.LinearWrap, Nothing, Nothing, Nothing, Nothing)
         ' Draw default floor tile
-        theSpriteBatch.Draw(grassTexture, New Vector2(0, 0), New Rectangle(0, 0, 100000, 50000), Color.White)
+        theSpriteBatch.Draw(Textures.grass, New Vector2(0, 0), New Rectangle(0, 0, 100000, 50000), Color.White)
         theSpriteBatch.End()
 
         theSpriteBatch.Begin(Nothing, BlendState.AlphaBlend, Nothing, Nothing, Nothing, Nothing, Nothing)

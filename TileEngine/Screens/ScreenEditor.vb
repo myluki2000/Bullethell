@@ -8,8 +8,11 @@ Public Class ScreenEditor
     Private Shared EditorBlocks As New List(Of Block)
     Shared WithEvents btnPlay As New Button With {.rect = New Rectangle(0, 0, 60, 30), .text = "Play"}
     Shared WithEvents btnSave As New Button With {.rect = New Rectangle(70, 0, 60, 30), .text = "Save"}
-    Shared WithEvents btnBlock1 As New Button With {.rect = New Rectangle(142, 2, 26, 26), .text = "", .ClickEffect = Button.ClickEffects.BlueBorder, .ToggleButton = True,
-        .BackgroundTexture = }
+    Shared WithEvents btnBlock1 As New Button With {.rect = New Rectangle(142, 2, 26, 26), .text = "", .ClickEffect = Button.ClickEffects.BlueBorder, .ToggleButton = True}
+    Shared WithEvents btnBlock2 As New Button With {.rect = New Rectangle(172, 2, 26, 26), .text = "", .ClickEffect = Button.ClickEffects.BlueBorder, .ToggleButton = True,
+        .BackgroundTexture = Textures.brokenStone}
+    Shared WithEvents btnBlock3 As New Button With {.rect = New Rectangle(202, 2, 26, 26), .text = "", .ClickEffect = Button.ClickEffects.BlueBorder, .ToggleButton = True,
+        .BackgroundTexture = Textures.wood}
 
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch)
         If Mouse.GetState.LeftButton = ButtonState.Pressed Then
@@ -36,6 +39,8 @@ Public Class ScreenEditor
         btnPlay.Draw(theSpriteBatch)
         btnSave.Draw(theSpriteBatch)
         btnBlock1.Draw(theSpriteBatch)
+        btnBlock2.Draw(theSpriteBatch)
+        btnBlock3.Draw(theSpriteBatch)
 
         theSpriteBatch.End()
     End Sub

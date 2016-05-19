@@ -65,10 +65,13 @@ Public Class Main
 
         Tile.TileWidth = 30
 
-        grassTexture = Content.Load(Of Texture2D)("grass")
+        Textures.grass = Content.Load(Of Texture2D)("grass")
+        Textures.brokenStone = Content.Load(Of Texture2D)("stone_broken")
+        Textures.wood = Content.Load(Of Texture2D)("wood")
+
         FontKoot = Content.Load(Of SpriteFont)("Koot")
 
-        Tiles.Add(New Tile(New Vector2(0, 2), grassTexture))
+        Tiles.Add(New Tile(New Vector2(0, 2), Textures.grass))
 
 
 

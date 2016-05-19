@@ -15,7 +15,6 @@ Module GlobalVariables
 
     Public Player As New PlayerChar
 
-    Public grassTexture As Graphics.Texture2D
     Public FontKoot As Graphics.SpriteFont
 
     Public ShadowTexture As Graphics.Texture2D
