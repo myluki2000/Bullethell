@@ -37,7 +37,7 @@ Public Class Main
 
         IsMouseVisible = True
 
-        Player.rect.Location = New Point(180, 180)
+        Player.rect.Location = New Point(70, 180)
         Enemy1.rect.Location = New Point(300, 180)
         Player.Type = Character.CharacterTypes.Player
         Enemy1.Type = Character.CharacterTypes.Enemy

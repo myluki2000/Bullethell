@@ -8,6 +8,7 @@ Public Class Character
     Public SpriteTexture As Texture2D
     Public alive As Boolean = True
     Public Type As CharacterTypes
+    Public Hitbox As Rectangle
 
     Public Enum CharacterTypes
         Player
@@ -23,10 +24,11 @@ Public Class Character
     End Sub
 
     Public Sub Draw(theSpriteBatch As SpriteBatch)
+        Hitbox = New Rectangle(rect.X, rect.Y - SpriteTexture.Height + rect.Height, SpriteTexture.Width, SpriteTexture.Height)
 
         If alive Then
             DrawRectangle.Draw(theSpriteBatch, rect, Color.Green) ' Draw Bounding Box
-            theSpriteBatch.Draw(SpriteTexture, New Rectangle(rect.X, rect.Y - SpriteTexture.Height + rect.Height, SpriteTexture.Width, SpriteTexture.Height), Color.White)
+            theSpriteBatch.Draw(SpriteTexture, Hitbox, Color.White)
             rect.Width = SpriteTexture.Width - 6
         End If
     End Sub

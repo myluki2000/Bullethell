@@ -5,11 +5,11 @@ Public Class Enemy
 
     Dim countdown As Double
     Public Sub Update(gameTime As GameTime)
-        If alive Then
+        If alive AndAlso Player.alive Then
             If countdown <= 0 Then
                 ShootProjectile(Player.rect.Location.ToVector2, 3, Projectile.ProjectileTypes.Enemy)
 
-                countdown = 500
+                countdown = 800
             End If
 
             countdown -= gameTime.ElapsedGameTime.TotalMilliseconds
