@@ -16,9 +16,16 @@ Public Class ScreenEditor
 
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch)
         If Mouse.GetState.LeftButton = ButtonState.Pressed Then
-            EditorBlocks.Add(New Block(New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0)))
-        End If
+            If btnBlock1.Checked Then
+                EditorBlocks.Add(New Block(New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0)))
 
+            ElseIf btnBlock2.Checked Then
+                EditorBlocks.Add(New Block(New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0), True, Textures.brokenStone, True))
+
+            ElseIf btnBlock3.Checked Then
+                EditorBlocks.Add(New Block(New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0), True, Textures.wood, True))
+            End If
+        End If
         If Mouse.GetState.RightButton = ButtonState.Pressed Then
             For Each _block In EditorBlocks
                 If _block.Position = New Vector3(CSng(Math.Floor(Mouse.GetState.Position.X / Block.BlockWidth)), CSng(Math.Floor(Mouse.GetState.Position.Y / Block.BlockWidth)), 0) Then
@@ -31,7 +38,7 @@ Public Class ScreenEditor
 
         theSpriteBatch.Begin()
         For Each _block In EditorBlocks
-            DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(_block.Position.X) * Block.BlockWidth, CInt(_block.Position.Y) * Block.BlockWidth, 30, 30), Color.Red)
+            DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(_block.Position.X) * Block.BlockWidth, CInt(_block.Position.Y) * Block.BlockWidth, Block.BlockWidth, Block.BlockWidth), Color.Red)
 
         Next
 
@@ -65,5 +72,20 @@ Public Class ScreenEditor
 
     Shared Sub btnSave_Clicked() Handles btnSave.Clicked
 
+    End Sub
+
+    Shared Sub btnBlock1_Clicked() Handles btnBlock1.Clicked
+        btnBlock2.Checked = False
+        btnBlock3.Checked = False
+    End Sub
+
+    Shared Sub btnBlock2_Clicked() Handles btnBlock2.Clicked
+        btnBlock1.Checked = False
+        btnBlock3.Checked = False
+    End Sub
+
+    Shared Sub btnBlock3_Clicked() Handles btnBlock3.Clicked
+        btnBlock1.Checked = False
+        btnBlock2.Checked = False
     End Sub
 End Class

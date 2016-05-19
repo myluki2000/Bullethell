@@ -51,7 +51,7 @@ Public Class Main
 
         ShadowTexture = Content.Load(Of Texture2D)("shadow")
 
-        Block.BlockWidth = 30
+        Block.BlockWidth = 50
 
 
         'Blocks.Add(New Block(New Vector3(0, 0, 0)))
@@ -63,7 +63,7 @@ Public Class Main
 
 
 
-        Tile.TileWidth = 30
+        Tile.TileWidth = 50
 
         Textures.grass = Content.Load(Of Texture2D)("grass")
         Textures.brokenStone = Content.Load(Of Texture2D)("stone_broken")
