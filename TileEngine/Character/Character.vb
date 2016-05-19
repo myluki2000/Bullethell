@@ -6,18 +6,29 @@ Public Class Character
     Public rect As New Rectangle(0, 0, 10, 10)
     Public PositionZ As Integer = 0 'Z Position (Height) of the player in Blocks
     Public SpriteTexture As Texture2D
+    Public alive As Boolean = True
+    Public Type As CharacterTypes
 
+    Public Enum CharacterTypes
+        Player
+        Enemy
+    End Enum
 
     Public Sub New()
 
     End Sub
 
+    Public Sub LoadTexture(texture As Texture2D)
+        SpriteTexture = texture
+    End Sub
+
     Public Sub Draw(theSpriteBatch As SpriteBatch)
 
-
-        DrawRectangle.Draw(theSpriteBatch, rect, Color.Green) ' Draw Bounding Box
-        theSpriteBatch.Draw(SpriteTexture, New Rectangle(rect.X, rect.Y - SpriteTexture.Height + rect.Height, SpriteTexture.Width, SpriteTexture.Height), Color.White)
-        rect.Width = SpriteTexture.Width - 6
+        If alive Then
+            DrawRectangle.Draw(theSpriteBatch, rect, Color.Green) ' Draw Bounding Box
+            theSpriteBatch.Draw(SpriteTexture, New Rectangle(rect.X, rect.Y - SpriteTexture.Height + rect.Height, SpriteTexture.Width, SpriteTexture.Height), Color.White)
+            rect.Width = SpriteTexture.Width - 6
+        End If
     End Sub
 
     Public Function MoveUp() As Boolean
@@ -62,7 +73,6 @@ Public Class Character
                 Return False
             End If
         Next
-
 
         rect.X += 1
         Return True

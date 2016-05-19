@@ -33,12 +33,24 @@ Public Class Projectile
 
             Position += Direction
 
+            For Each _character In Characters
+                If New Rectangle(_character.rect.X, _character.rect.Y, _character.SpriteTexture.Width, _character.SpriteTexture.Height).Intersects(rect) Then
+                    If _character.Type = Character.CharacterTypes.Player AndAlso ProjectileType = ProjectileTypes.Enemy Then
+                        _character.alive = False
+                    End If
 
+                    If _character.Type = Character.CharacterTypes.Enemy AndAlso ProjectileType = ProjectileTypes.Player Then
+                        _character.alive = False
+                    End If
+                End If
+            Next
         End If
 
     End Sub
 
     Public Sub Draw(theSpriteBatch As SpriteBatch)
-        DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(Position.X), CInt(Position.Y), 10, 10), Color.Red)
+        'DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(Position.X), CInt(Position.Y), 10, 10), Color.Red)
+
+
     End Sub
 End Class

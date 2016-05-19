@@ -9,11 +9,14 @@ Module GlobalVariables
 
     Public shadowTarget As Graphics.RenderTarget2D
     Public graphics As GraphicsDeviceManager
-    Public Blocks As New List(Of Block) ' Blocks
 
+    Public Blocks As New List(Of Block) ' Blocks
     Public Tiles As New List(Of Tile)
 
+    Public Characters As New List(Of Character)
+
     Public Player As New PlayerChar
+    Public Enemy1 As New Enemy
 
     Public FontKoot As Graphics.SpriteFont
 
@@ -49,4 +52,11 @@ Module GlobalVariables
         End If
 
     End Function
+
+    Public Sub Sleep(ByRef iMilliSeconds As Integer)
+        Dim i As Integer, iHalfSeconds As Integer = iMilliSeconds / 500
+        For i = 1 To iHalfSeconds
+            Threading.Thread.Sleep(500)
+        Next i
+    End Sub
 End Module

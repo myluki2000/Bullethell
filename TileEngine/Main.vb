@@ -38,6 +38,12 @@ Public Class Main
         IsMouseVisible = True
 
         Player.rect.Location = New Point(180, 180)
+        Enemy1.rect.Location = New Point(300, 180)
+        Player.Type = Character.CharacterTypes.Player
+        Enemy1.Type = Character.CharacterTypes.Enemy
+        Characters.Add(Player)
+        Characters.Add(Enemy1)
+
         MyBase.Initialize()
     End Sub
 
@@ -68,6 +74,7 @@ Public Class Main
         Textures.grass = Content.Load(Of Texture2D)("grass")
         Textures.brokenStone = Content.Load(Of Texture2D)("stone_broken")
         Textures.wood = Content.Load(Of Texture2D)("wood")
+        Textures.Bullet = Content.Load(Of Texture2D)("bullet")
 
         FontKoot = Content.Load(Of SpriteFont)("Koot")
 
@@ -76,6 +83,7 @@ Public Class Main
 
 
         Player.SpriteTexture = Content.Load(Of Texture2D)("character")
+        Enemy1.SpriteTexture = Content.Load(Of Texture2D)("blaeh")
         ' TODO: use this.Content to load your game content here
     End Sub
 
@@ -97,9 +105,12 @@ Public Class Main
             [Exit]()
         End If
 
-        Player.Update(gameTime)
-        ScreenEditor.Update(gameTime)
-        ScreenMainGame.Update(gameTime)
+        Select Case SelectedScreen
+            Case Screens.Editor
+                ScreenEditor.Update(gameTime)
+            Case Screens.MainGame
+                ScreenMainGame.Update(gameTime)
+        End Select
         MyBase.Update(gameTime)
     End Sub
 

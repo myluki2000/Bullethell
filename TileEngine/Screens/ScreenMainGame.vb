@@ -7,6 +7,7 @@ Public Class ScreenMainGame
     Public Shared Projectiles As New List(Of Projectile)
     Public Shared DrawShadows As Boolean = True
 
+
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch, theGameTime As GameTime)
         theSpriteBatch.Begin(Nothing, BlendState.AlphaBlend, SamplerState.LinearWrap, Nothing, Nothing, Nothing, Nothing)
         ' Draw default floor tile
@@ -45,6 +46,7 @@ Public Class ScreenMainGame
         ' Draw player
         Player.Draw(theSpriteBatch)
 
+        Enemy1.Draw(theSpriteBatch)
 
 
         ' Draw Projectiles
@@ -79,6 +81,9 @@ Public Class ScreenMainGame
     End Sub
 
     Public Shared Sub Update(gameTime As GameTime)
+        Enemy1.Update(gameTime)
+        Player.Update(gameTime)
+
         Try
             For Each proj In Projectiles
                 proj.Update(gameTime)
