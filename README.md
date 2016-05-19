@@ -1,8 +1,3 @@
-# Tile/Blockengine for XNA / Monogame
+# Simple Bullethell game in XNA
 
-This is a simple Block/Tileengine for XNA/ Monogame. It currently supports
-
-- floor tiles
-- fake 3d Blocks with textures
-- Sprites as fake 3d models
-- very basic shadow system
+This is a simple Bullethell game in XNA/ Monogame.
