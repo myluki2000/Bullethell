@@ -1,12 +1,13 @@
 ﻿Imports System.Collections.Generic
 Imports Microsoft.Xna.Framework
 Imports Microsoft.Xna.Framework.Graphics
+Imports Microsoft.Xna.Framework.Input
 
 Public Class ScreenMainGame
 
     Public Shared Projectiles As New List(Of Projectile)
     Public Shared DrawShadows As Boolean = True
-
+    Public Shared PathTexArray As Color(,)
 
     Public Shared Sub Draw(theSpriteBatch As SpriteBatch, theGameTime As GameTime)
         theSpriteBatch.Begin(Nothing, BlendState.AlphaBlend, SamplerState.LinearWrap, Nothing, Nothing, Nothing, Nothing)
@@ -96,4 +97,43 @@ Public Class ScreenMainGame
 
         End Try
     End Sub
+
+    Shared tex As Texture2D
+    Public Shared Sub DrawPathfinding()
+        Dim theSpriteBatch As New SpriteBatch(graphics.GraphicsDevice)
+
+        Dim renderTargetPath As New RenderTarget2D(graphics.GraphicsDevice,
+            graphics.PreferredBackBufferWidth,
+            graphics.PreferredBackBufferHeight)
+
+        graphics.GraphicsDevice.SetRenderTarget(renderTargetPath)
+        graphics.GraphicsDevice.Clear(Color.Gray)
+
+        theSpriteBatch.Begin()
+        For Each block In Blocks
+            DrawRectangle.Draw(theSpriteBatch, AddRects(block.rect, New Rectangle(0, CInt(-block.Position.Z * Block.BlockWidth), 0, 0)), Color.Black)
+        Next
+        theSpriteBatch.End()
+
+        graphics.GraphicsDevice.SetRenderTarget(Nothing)
+
+        PathTexArray = TextureTo2DArray(renderTargetPath)
+        tex = renderTargetPath
+    End Sub
+
+
+    Shared Function TextureTo2DArray(texture As Texture2D) As Color(,)
+        Dim colors1D As Color() = New Color(texture.Width * texture.Height - 1) {}
+        texture.GetData(colors1D)
+
+
+        Dim colors2D As Color(,) = New Color(texture.Width - 1, texture.Height - 1) {}
+        For x As Integer = 0 To texture.Width - 1
+            For y As Integer = 0 To texture.Height - 1
+                colors2D(x, y) = colors1D(x + y * texture.Width)
+            Next
+        Next
+
+        Return colors2D
+    End Function
 End Class

@@ -74,6 +74,7 @@ Public Class ScreenEditor
 
 
         ScreenMainGame.DrawShadows = True
+        ScreenMainGame.DrawPathfinding()
         SelectedScreen = Screens.MainGame
     End Sub
 

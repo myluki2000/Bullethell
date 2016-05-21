@@ -16,25 +16,19 @@ Public Class Projectile
     Dim previousTime As Integer
     Public Sub Update(gameTime As GameTime)
         If gameTime.TotalGameTime.Milliseconds Mod 2 = 0 Then
-            Dim rect As Rectangle
-            rect.Location = (Position + Direction).ToPoint
-            rect.Width = 10
-            rect.Height = 10
-
-            previousTime = CInt(gameTime.TotalGameTime.TotalMilliseconds)
-
-            For Each block In Blocks
-                If rect.Intersects(block.BoundingBox) Then
+            Try
+                If ScreenMainGame.PathTexArray(CInt(Position.X), CInt(Position.Y)) = Color.Black Then
                     landed = True
                     Direction = Vector2.Zero
                     Return
                 End If
-            Next
+            Catch ex As IndexOutOfRangeException
+            End Try
 
             Position += Direction
 
             For Each _character In Characters
-                If _character.Hitbox.Intersects(rect) Then
+                If _character.Hitbox.Intersects(New Rectangle(Position.X, Position.Y, 10, 10)) Then
                     If _character.Type = Character.CharacterTypes.Player AndAlso ProjectileType = ProjectileTypes.Enemy Then
                         _character.alive = False
                     End If
@@ -45,7 +39,6 @@ Public Class Projectile
                 End If
             Next
         End If
-
     End Sub
 
     Public Sub Draw(theSpriteBatch As SpriteBatch)

@@ -71,17 +71,17 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Block.vb" />
+    <Compile Include="World\Block.vb" />
     <Compile Include="Character\Character.vb" />
     <Compile Include="Character\Enemy.vb" />
     <Compile Include="Character\PlayerChar.vb" />
     <Compile Include="Character\Projectile.vb" />
-    <Compile Include="DrawRectangle.vb" />
+    <Compile Include="Misc\DrawRectangle.vb" />
     <Compile Include="GlobalVariables.vb" />
     <Compile Include="Misc\Textures.vb" />
     <Compile Include="Screens\ScreenEditor.vb" />
     <Compile Include="Screens\ScreenMainGame.vb" />
-    <Compile Include="Tile.vb" />
+    <Compile Include="World\Tile.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="Program.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />

@@ -54,7 +54,7 @@ Module GlobalVariables
     End Function
 
     Public Sub Sleep(ByRef iMilliSeconds As Integer)
-        Dim i As Integer, iHalfSeconds As Integer = iMilliSeconds / 500
+        Dim i As Integer, iHalfSeconds As Integer = CInt(iMilliSeconds / 500)
         For i = 1 To iHalfSeconds
             Threading.Thread.Sleep(500)
         Next i
