@@ -47,7 +47,7 @@ Public Class Character
 
     Public Function MoveLeft() As Boolean
         For Each Block In Blocks
-            If Block.Position.Z = PositionZ AndAlso Block.BoundingBox.Intersects(New Rectangle(rect.X - 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+            If Block.BoundingBox.Intersects(New Rectangle(rect.X - 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
                 Return False
             End If
         Next
@@ -59,7 +59,7 @@ Public Class Character
 
     Public Function MoveDown() As Boolean
         For Each Block In Blocks
-            If Block.TopIsWalkable = True AndAlso Block.Position.Z = PositionZ AndAlso Block.BoundingBox.Intersects(New Rectangle(rect.X, rect.Y + 1, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+            If Block.BoundingBox.Intersects(New Rectangle(rect.X, rect.Y + 1, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
                 Return False
             End If
         Next
@@ -71,12 +71,25 @@ Public Class Character
 
     Public Function MoveRight() As Boolean
         For Each Block In Blocks
-            If Block.Position.Z = PositionZ AndAlso Block.BoundingBox.Intersects(New Rectangle(rect.X + 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+            If Block.BoundingBox.Intersects(New Rectangle(rect.X + 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
                 Return False
             End If
         Next
 
         rect.X += 1
+        Return True
+    End Function
+
+    Public Function MoveInDirection(Direction As Vector2, Speed As Single) As Boolean
+        Direction = (Direction / CSng(Math.Sqrt(Direction.X ^ 2 + Direction.Y ^ 2))) * (Speed + 1) ' +1 needed because Direction will often be <1 pixel
+
+        For Each Block In Blocks
+            If Block.BoundingBox.Intersects(New Rectangle(CInt(rect.X + Direction.X), CInt(rect.Y + Direction.Y), rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+                Return False
+            End If
+        Next
+
+        rect.Location += Direction.ToPoint
         Return True
     End Function
 
