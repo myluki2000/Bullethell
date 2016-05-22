@@ -80,16 +80,35 @@ Public Class Character
         Return True
     End Function
 
-    Public Function MoveInDirection(Direction As Vector2, Speed As Single) As Boolean
+    Public Sub MoveInDirection(Direction As Vector2, Speed As Single)
         Direction = (Direction / CSng(Math.Sqrt(Direction.X ^ 2 + Direction.Y ^ 2))) * (Speed + 1) ' +1 needed because Direction will often be <1 pixel
 
+        If MoveX(Direction) Then
+            rect.X += Direction.X
+        End If
+
+        If MoveY(Direction) Then
+            rect.Y += Direction.Y
+        End If
+    End Sub
+
+    Private Function MoveX(Direction As Vector2) As Boolean
         For Each Block In Blocks
-            If Block.BoundingBox.Intersects(New Rectangle(CInt(rect.X + Direction.X), CInt(rect.Y + Direction.Y), rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+            If Block.BoundingBox.Intersects(New Rectangle(CInt(rect.X + Direction.X), rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
                 Return False
             End If
         Next
 
-        rect.Location += Direction.ToPoint
+        Return True
+    End Function
+
+    Private Function MoveY(Direction As Vector2) As Boolean
+        For Each Block In Blocks
+            If Block.BoundingBox.Intersects(New Rectangle(rect.X, CInt(rect.Y + Direction.Y), rect.Width, rect.Height)) AndAlso Block.Solid = True Then
+                Return False
+            End If
+        Next
+
         Return True
     End Function
 

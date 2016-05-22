@@ -89,9 +89,9 @@ Public Class ScreenMainGame
             For Each proj In Projectiles
                 proj.Update(gameTime)
 
-                If proj.landed = True Then
-                    Projectiles.Remove(proj)
-                End If
+                'If proj.landed = True Then
+                '    Projectiles.Remove(proj)
+                'End If
             Next
         Catch ex As InvalidOperationException
 

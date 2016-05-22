@@ -23,6 +23,7 @@ Public Class Projectile
                     Return
                 End If
             Catch ex As IndexOutOfRangeException
+                ScreenMainGame.Projectiles.Remove(Me)
             End Try
 
             Position += Direction

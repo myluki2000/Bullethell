@@ -31,7 +31,10 @@ Public Class Block
 
     Public Sub DrawShadow(theSpriteBatch As SpriteBatch)
         If CastShadows AndAlso Position.Z = 0 Then
-            If rect = BoundingBox Then
+
+            Dim _bbox As New Rectangle With {.Y = CInt(rect.Y - Block.BlockWidth / 2), .X = rect.X, .Width = rect.Width, .Height = CInt(rect.Height + Block.BlockWidth / 2)}
+
+            If BoundingBox = _bbox Then
                 DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(Position.X * BlockWidth + BlockWidth), CInt(Position.Y * BlockWidth + BlockWidth), BlockWidth, BlockWidth),
                 Nothing, Nothing, ToRad(45), Color.Black) ' Top Shadow
                 DrawRectangle.Draw(theSpriteBatch, New Rectangle(CInt(Position.X * BlockWidth), CInt(Position.Y * BlockWidth) + BlockWidth * 2, BlockWidth, BlockWidth),
@@ -49,14 +52,20 @@ Public Class Block
     Public Sub New(_position As Vector3) ' block
         Position = _position
         rect = New Rectangle(CInt(Position.X * BlockWidth), CInt(Position.Y * BlockWidth) + BlockWidth, BlockWidth, BlockWidth)
-        BoundingBox = rect
+        BoundingBox.Y = CInt(rect.Y - Block.BlockWidth / 2)
+        BoundingBox.X = rect.X
+        BoundingBox.Width = rect.Width
+        BoundingBox.Height = CInt(rect.Height + Block.BlockWidth / 2)
     End Sub
 
     Public Sub New(_position As Vector3, _solid As Boolean) ' block
         Position = _position
         Solid = _solid
         rect = New Rectangle(CInt(Position.X * BlockWidth), CInt(Position.Y * BlockWidth) + BlockWidth, BlockWidth, BlockWidth)
-        BoundingBox = rect
+        BoundingBox.Y = CInt(rect.Y - Block.BlockWidth / 2)
+        BoundingBox.X = rect.X
+        BoundingBox.Width = rect.Width
+        BoundingBox.Height = CInt(rect.Height + Block.BlockWidth / 2)
     End Sub
 
     Public Sub New(_position As Vector3, _solid As Boolean, _texture As Texture2D, _castShadows As Boolean) ' block
@@ -65,7 +74,10 @@ Public Class Block
         Solid = _solid
         SpriteTexture = _texture
         rect = New Rectangle(CInt(Position.X * BlockWidth), CInt(Position.Y * BlockWidth) + BlockWidth, BlockWidth, BlockWidth)
-        BoundingBox = rect
+        BoundingBox.Y = CInt(rect.Y - Block.BlockWidth / 2)
+        BoundingBox.X = rect.X
+        BoundingBox.Width = rect.Width
+        BoundingBox.Height = CInt(rect.Height + Block.BlockWidth / 2)
         BlockWithTexture = True
     End Sub
 

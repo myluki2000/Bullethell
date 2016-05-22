@@ -111,6 +111,8 @@ Public Class Main
             Case Screens.MainGame
                 ScreenMainGame.Update(gameTime)
         End Select
+
+        Sleep(5)
         MyBase.Update(gameTime)
     End Sub
 
