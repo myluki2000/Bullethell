@@ -111,7 +111,7 @@ Public Class ScreenMainGame
 
         theSpriteBatch.Begin()
         For Each block In Blocks
-            DrawRectangle.Draw(theSpriteBatch, AddRects(block.rect, New Rectangle(0, CInt(-block.Position.Z * Block.BlockWidth), 0, 0)), Color.Black)
+            DrawRectangle.Draw(theSpriteBatch, block.BoundingBox, Color.Black)
         Next
         theSpriteBatch.End()
 

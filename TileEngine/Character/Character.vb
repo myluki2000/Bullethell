@@ -33,62 +33,15 @@ Public Class Character
         End If
     End Sub
 
-    Public Function MoveUp() As Boolean
-
-        For Each Block In Blocks
-            If Block.BoundingBox.Intersects(New Rectangle(rect.X, rect.Y - 1, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
-                Return False
-            End If
-        Next
-
-        rect.Y -= 1
-        Return True
-    End Function
-
-    Public Function MoveLeft() As Boolean
-        For Each Block In Blocks
-            If Block.BoundingBox.Intersects(New Rectangle(rect.X - 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
-                Return False
-            End If
-        Next
-
-
-        rect.X -= 1
-        Return True
-    End Function
-
-    Public Function MoveDown() As Boolean
-        For Each Block In Blocks
-            If Block.BoundingBox.Intersects(New Rectangle(rect.X, rect.Y + 1, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
-                Return False
-            End If
-        Next
-
-
-        rect.Y += 1
-        Return True
-    End Function
-
-    Public Function MoveRight() As Boolean
-        For Each Block In Blocks
-            If Block.BoundingBox.Intersects(New Rectangle(rect.X + 1, rect.Y, rect.Width, rect.Height)) AndAlso Block.Solid = True Then
-                Return False
-            End If
-        Next
-
-        rect.X += 1
-        Return True
-    End Function
-
     Public Sub MoveInDirection(Direction As Vector2, Speed As Single)
         Direction = (Direction / CSng(Math.Sqrt(Direction.X ^ 2 + Direction.Y ^ 2))) * (Speed + 1) ' +1 needed because Direction will often be <1 pixel
 
         If MoveX(Direction) Then
-            rect.X += Direction.X
+            rect.X += CInt(Direction.X)
         End If
 
         If MoveY(Direction) Then
-            rect.Y += Direction.Y
+            rect.Y += CInt(Direction.Y)
         End If
     End Sub
 

@@ -12,19 +12,19 @@ Public Class PlayerChar
             _counterShootCooldown -= gameTime.ElapsedGameTime.TotalMilliseconds
 
             If Keyboard.GetState.IsKeyDown(Keys.W) Then
-                MoveUp()
+                MoveInDirection(New Vector2(0, -1), 1)
             End If
 
             If Keyboard.GetState.IsKeyDown(Keys.A) Then
-                MoveLeft()
+                MoveInDirection(New Vector2(-1, 0), 1)
             End If
 
             If Keyboard.GetState.IsKeyDown(Keys.S) Then
-                MoveDown()
+                MoveInDirection(New Vector2(0, 1), 1)
             End If
 
             If Keyboard.GetState.IsKeyDown(Keys.D) Then
-                MoveRight()
+                MoveInDirection(New Vector2(1, 0), 1)
             End If
 
             If Mouse.GetState.LeftButton = ButtonState.Pressed AndAlso _counterShootCooldown <= 0 Then

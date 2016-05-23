@@ -29,7 +29,7 @@ Public Class Projectile
             Position += Direction
 
             For Each _character In Characters
-                If _character.Hitbox.Intersects(New Rectangle(Position.X, Position.Y, 10, 10)) Then
+                If _character.Hitbox.Intersects(New Rectangle(CInt(Position.X), CInt(Position.Y), 10, 10)) Then
                     If _character.Type = Character.CharacterTypes.Player AndAlso ProjectileType = ProjectileTypes.Enemy Then
                         _character.alive = False
                     End If

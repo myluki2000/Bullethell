@@ -55,7 +55,7 @@ Public Class Main
         ' Create a new SpriteBatch, which can be used to draw textures.
         spriteBatch = New SpriteBatch(GraphicsDevice)
 
-        ShadowTexture = Content.Load(Of Texture2D)("shadow")
+        ShadowTexture = Content.Load(Of Texture2D)("Textures/Misc/shadow")
 
         Block.BlockWidth = 50
 
@@ -71,19 +71,19 @@ Public Class Main
 
         Tile.TileWidth = 50
 
-        Textures.grass = Content.Load(Of Texture2D)("grass")
-        Textures.brokenStone = Content.Load(Of Texture2D)("stone_broken")
-        Textures.wood = Content.Load(Of Texture2D)("wood")
-        Textures.Bullet = Content.Load(Of Texture2D)("bullet")
+        Textures.grass = Content.Load(Of Texture2D)("Textures/BlockTile/grass")
+        Textures.brokenStone = Content.Load(Of Texture2D)("Textures/BlockTile/stone_broken")
+        Textures.wood = Content.Load(Of Texture2D)("Textures/BlockTile/wood")
+        Textures.Bullet = Content.Load(Of Texture2D)("Textures/Misc/bullet")
 
-        FontKoot = Content.Load(Of SpriteFont)("Koot")
+        FontKoot = Content.Load(Of SpriteFont)("Fonts/Koot")
 
         Tiles.Add(New Tile(New Vector2(0, 2), Textures.grass))
 
 
 
-        Player.SpriteTexture = Content.Load(Of Texture2D)("character")
-        Enemy1.SpriteTexture = Content.Load(Of Texture2D)("blaeh")
+        Player.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/character")
+        Enemy1.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/blaeh")
         ' TODO: use this.Content to load your game content here
     End Sub
 
