@@ -28,19 +28,14 @@ Public Class ScreenMainGame
 
         ' Draw blocks behind player
         For Each Block In Blocks
-            If Block.Position.Z < Player.PositionZ OrElse Block.rect.Y + Block.BlockWidth <= Player.rect.Y Then
+            If Block.rect.Y + Block.BlockWidth <= Player.rect.Y Then
                 Block.Draw(theSpriteBatch)
             End If
         Next
 
-
-
-        For Each Block In Blocks
-            If Block.Position.Z = Player.PositionZ - 1 Then
-                DrawRectangle.Draw(theSpriteBatch, New Rectangle(Block.rect.X, Block.rect.Y - Block.BlockWidth, Block.rect.Width, Block.rect.Height), Color.Red)
-            End If
+        For Each _decal In Decals
+            _decal.Draw(theSpriteBatch)
         Next
-
 
 
 

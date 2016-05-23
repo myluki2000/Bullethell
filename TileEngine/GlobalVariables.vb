@@ -12,6 +12,7 @@ Module GlobalVariables
 
     Public Blocks As New List(Of Block) ' Blocks
     Public Tiles As New List(Of Tile)
+    Public Decals As New List(Of Decal)
 
     Public Characters As New List(Of Character)
 

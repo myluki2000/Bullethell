@@ -55,19 +55,7 @@ Public Class Main
     ''' </summary>
     Protected Overrides Sub LoadContent()
 
-#Region "Texture Loading"
-        Textures.grass = Content.Load(Of Texture2D)("Textures/BlockTile/grass")
-        Textures.brokenStone = Content.Load(Of Texture2D)("Textures/BlockTile/stone_broken")
-        Textures.wood = Content.Load(Of Texture2D)("Textures/BlockTile/wood")
-        Textures.Bullet = Content.Load(Of Texture2D)("Textures/Misc/bullet")
-
-        FontKoot = Content.Load(Of SpriteFont)("Fonts/Koot")
-
-        Player.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/character")
-        Enemy1.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/blaeh")
-
-        ShadowTexture = Content.Load(Of Texture2D)("Textures/Misc/shadow")
-#End Region
+        Textures.LoadTextures(Content)
 
         spriteBatch = New SpriteBatch(GraphicsDevice)
 
@@ -77,6 +65,7 @@ Public Class Main
 
 
         Room.GenerateRoom()
+        Decals.Add(New Decal(Textures.doorWood, Decal.Orientations.Left, New Vector2(2, 0)))
     End Sub
 
     ''' <summary>

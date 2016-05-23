@@ -81,6 +81,7 @@
     <Compile Include="Misc\Textures.vb" />
     <Compile Include="Screens\ScreenEditor.vb" />
     <Compile Include="Screens\ScreenMainGame.vb" />
+    <Compile Include="World\Decal.vb" />
     <Compile Include="World\Room\Room.vb" />
     <Compile Include="World\Tile.vb" />
     <Compile Include="Main.vb" />
@@ -109,19 +110,22 @@
     <Content Include="Content\Textures\Characters\character.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BlockTile\grass.png">
+    <Content Include="Content\Textures\World\BlockTile\grass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Misc\shadow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BlockTile\stone_broken.png">
+    <Content Include="Content\Textures\World\BlockTile\stone_broken.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BlockTile\tree.png">
+    <Content Include="Content\Textures\World\BlockTile\tree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BlockTile\wood.png">
+    <Content Include="Content\Textures\World\BlockTile\wood.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\World\Decals\door_wood.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
