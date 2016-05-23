@@ -14,7 +14,17 @@ Public Class Projectile
     Public landed As Boolean = False
 
     Dim previousTime As Integer
+
+    Dim TimeUntilDestroyed As Double = 5000
+
     Public Sub Update(gameTime As GameTime)
+        TimeUntilDestroyed -= gameTime.ElapsedGameTime.TotalMilliseconds
+
+        If TimeUntilDestroyed <= 0 AndAlso landed = False Then
+            landed = True
+            Direction = Vector2.Zero
+        End If
+
         If gameTime.TotalGameTime.Milliseconds Mod 2 = 0 Then
             Try
                 If ScreenMainGame.PathTexArray(CInt(Position.X), CInt(Position.Y)) = Color.Black Then
