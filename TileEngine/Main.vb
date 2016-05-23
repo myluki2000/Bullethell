@@ -30,8 +30,10 @@ Public Class Main
     ''' </summary>
     Protected Overrides Sub Initialize()
         ' TODO: Add your initialization logic here
+        'Dim rm As New Room
 
-        SelectedScreen = Screens.Editor
+
+
 
         shadowTarget = New RenderTarget2D(GraphicsDevice, GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight)
 
@@ -52,25 +54,8 @@ Public Class Main
     ''' all of your content.
     ''' </summary>
     Protected Overrides Sub LoadContent()
-        ' Create a new SpriteBatch, which can be used to draw textures.
-        spriteBatch = New SpriteBatch(GraphicsDevice)
 
-        ShadowTexture = Content.Load(Of Texture2D)("Textures/Misc/shadow")
-
-        Block.BlockWidth = 50
-
-
-        'Blocks.Add(New Block(New Vector3(0, 0, 0)))
-        'Blocks.Add(New Block(New Vector3(1, 0, 0)))
-        'Blocks.Add(New Block(New Vector3(2, 0, 0)))
-        'Blocks.Add(New Block(New Vector3(3, 0, 0)))
-
-
-
-
-
-        Tile.TileWidth = 50
-
+#Region "Texture Loading"
         Textures.grass = Content.Load(Of Texture2D)("Textures/BlockTile/grass")
         Textures.brokenStone = Content.Load(Of Texture2D)("Textures/BlockTile/stone_broken")
         Textures.wood = Content.Load(Of Texture2D)("Textures/BlockTile/wood")
@@ -78,13 +63,20 @@ Public Class Main
 
         FontKoot = Content.Load(Of SpriteFont)("Fonts/Koot")
 
-        Tiles.Add(New Tile(New Vector2(0, 2), Textures.grass))
-
-
-
         Player.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/character")
         Enemy1.SpriteTexture = Content.Load(Of Texture2D)("Textures/Characters/blaeh")
-        ' TODO: use this.Content to load your game content here
+
+        ShadowTexture = Content.Load(Of Texture2D)("Textures/Misc/shadow")
+#End Region
+
+        spriteBatch = New SpriteBatch(GraphicsDevice)
+
+        Block.BlockWidth = 50
+        Tile.TileWidth = 50
+
+
+
+        Room.GenerateRoom()
     End Sub
 
     ''' <summary>
@@ -102,7 +94,7 @@ Public Class Main
     ''' <param name="gameTime">Provides a snapshot of timing values.</param>
     Protected Overrides Sub Update(gameTime As GameTime)
         If GamePad.GetState(PlayerIndex.One).Buttons.Back = ButtonState.Pressed OrElse Keyboard.GetState().IsKeyDown(Keys.Escape) Then
-            [Exit]()
+            End
         End If
 
         Select Case SelectedScreen

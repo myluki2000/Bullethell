@@ -18,6 +18,8 @@ Public Class Projectile
     Dim TimeUntilDestroyed As Double = 5000
 
     Public Sub Update(gameTime As GameTime)
+
+
         TimeUntilDestroyed -= gameTime.ElapsedGameTime.TotalMilliseconds
 
         If TimeUntilDestroyed <= 0 AndAlso landed = False Then

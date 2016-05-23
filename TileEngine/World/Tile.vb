@@ -22,9 +22,14 @@ Public Class Tile
 
     Public Sub Draw(theSpriteBatch As SpriteBatch)
         If SpriteTexture Is Nothing Then
-
+            DrawRectangle.Draw(theSpriteBatch, rect, Color)
         Else
-            theSpriteBatch.Draw(SpriteTexture, rect, Color.White)
+            If SpriteTexture.Height = SpriteTexture.Width Then
+                theSpriteBatch.Draw(SpriteTexture, rect, Color.White)
+            Else
+                theSpriteBatch.Draw(SpriteTexture, rect, New Rectangle(0, 0, SpriteTexture.Width, SpriteTexture.Width), Color.White)
+            End If
+
         End If
     End Sub
 End Class
