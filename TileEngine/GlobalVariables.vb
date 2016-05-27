@@ -10,6 +10,9 @@ Module GlobalVariables
     Public shadowTarget As Graphics.RenderTarget2D
     Public graphics As GraphicsDeviceManager
 
+
+    Public Rooms As New List(Of Room)
+
     Public Blocks As New List(Of Block) ' Blocks
     Public Tiles As New List(Of Tile)
     Public Decals As New List(Of Decal)

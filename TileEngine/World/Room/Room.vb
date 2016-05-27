@@ -1,6 +1,8 @@
 ﻿Imports Microsoft.Xna.Framework
 
 Public Class Room
+    Public Position As Vector2
+
     Public Shared Sub GenerateRoom()
         Blocks.Clear()
         Tiles.Clear()
@@ -20,6 +22,12 @@ Public Class Room
             Blocks.Add(New Block(New Vector3(0, iY, 0), True))
             Blocks.Add(New Block(New Vector3(CSng(graphics.PreferredBackBufferWidth / Block.BlockWidth) - 1, iY, 0), True))
         Next
+
+
+        Decals.Add(New Decal(Textures.doorWood, Decal.Orientations.Down, New Vector2(CInt((graphics.PreferredBackBufferWidth / Block.BlockWidth - 1) / 2), 0)))
+        Decals.Add(New Decal(Textures.doorWood, Decal.Orientations.Up, New Vector2(CInt((graphics.PreferredBackBufferWidth / Block.BlockWidth - 1) / 2),
+                                                                                   CInt(graphics.PreferredBackBufferHeight / Block.BlockWidth - 1))))
+
 
         ScreenMainGame.DrawShadows = True
         ScreenMainGame.DrawPathfinding()

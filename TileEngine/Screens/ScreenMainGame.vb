@@ -34,9 +34,10 @@ Public Class ScreenMainGame
         Next
 
         For Each _decal In Decals
-            _decal.Draw(theSpriteBatch)
+            If _decal.Position.Y * Block.BlockWidth <= Player.rect.Y Then
+                _decal.Draw(theSpriteBatch)
+            End If
         Next
-
 
 
         ' Draw player
@@ -58,6 +59,13 @@ Public Class ScreenMainGame
                 Block.Draw(theSpriteBatch)
             End If
         Next
+
+        For Each _decal In Decals
+            If _decal.Position.Y * Block.BlockWidth > Player.rect.Y Then
+                _decal.Draw(theSpriteBatch)
+            End If
+        Next
+
 
 
         theSpriteBatch.End()
